@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5472056830677337358}
   - component: {fileID: -5022148369964632779}
-  - component: {fileID: 909573426823475153}
+  - component: {fileID: 1885210668645696432}
   m_Layer: 0
   m_Name: LineRay
   m_TagString: Untagged
@@ -137,7 +137,7 @@ LineRenderer:
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &909573426823475153
+--- !u!114 &1885210668645696432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,5 +149,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b112dd15529f4c546b6ee481d5cc43ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lr: {fileID: -5022148369964632779}
+  lr: {fileID: 0}
   rayLength: 100
