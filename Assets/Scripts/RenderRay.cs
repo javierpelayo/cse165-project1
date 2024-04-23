@@ -29,6 +29,7 @@ public class RenderRay : MonoBehaviour
         }
 
         // Debug
+        Debug.Log("No Hit: " + hit.distance);
 
         lr.SetPosition(0, Vector3.zero); // start
         lr.SetPosition(1, endPosition); // end
