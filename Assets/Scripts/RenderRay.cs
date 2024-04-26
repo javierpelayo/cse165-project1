@@ -5,7 +5,10 @@ using UnityEngine;
 public class RenderRay : MonoBehaviour
 {
     public LineRenderer lr;
-    public float rayLength = 100.0f;
+    public float rayLength = 10.0f;
+
+    public GameObject itemPrefab;  // Drag your prefab here in the inspector
+    public LayerMask interactableLayers; 
 
     // Start is called before the first frame update
     void Start()
@@ -20,19 +23,28 @@ public class RenderRay : MonoBehaviour
         RaycastHit hit;
         Vector3 endPosition = new Vector3(0,0,rayLength);
 
-        bool rayHits = Physics.Raycast(Vector3.zero, new Vector3(0,0,1), out hit, rayLength);
+        bool rayHits = Physics.Raycast(transform.position, transform.forward, out hit, rayLength);
+
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger, OVRInput.Controller.RTouch))
+        {
+            if (rayHits) {
+            {
+                // If the ray hits, spawn the item at the hit point
+                Instantiate(itemPrefab, hit.point, Quaternion.identity);
+            }
+            else
+            {
+                // If the ray does not hit, spawn the item at the maximum ray length
+                Instantiate(itemPrefab, transform.position + transform.forward * rayLength, Quaternion.identity);
+            }
+        }
 
         if(rayHits)
         {
             endPosition = new Vector3(0.0f, 0.0f, hit.distance);
-            Debug.Log("Hit distance: " + hit.distance);
         }
-
-        // Debug
-        Debug.Log("No Hit: " + hit.distance);
 
         lr.SetPosition(0, Vector3.zero); // start
         lr.SetPosition(1, endPosition); // end
-
     }
 }

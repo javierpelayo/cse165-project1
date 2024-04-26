@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18029143, g: 0.22572419, b: 0.30693057, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3349,11 +3349,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6455c923cdc437e49a429a4cf150d595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vrCameraRig: {fileID: 1892524390}
-  teleportMask:
+  teleportationAreasMask:
     serializedVersion: 2
-    m_Bits: 4294967295
-  maxTeleportDistance: 100
+    m_Bits: 0
+  rightHandTransform: {fileID: 1855064600}
+  cameraRig: {fileID: 1367170012}
 --- !u!4 &1961765968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 11cd62256b1d470f922b2c8e6446cc77, type: 3}

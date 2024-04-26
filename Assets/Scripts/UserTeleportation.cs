@@ -13,7 +13,8 @@ public class UserTeleportation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump")) 
+        //if (Input.GetButtonDown("Jump")) 
+        if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
         {
             RaycastForTeleportationArea();
         }

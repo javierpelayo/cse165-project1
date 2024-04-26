@@ -16,21 +16,11 @@ public class UserMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         // Get the input from the left joystick
-        Vector2 joystickInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-        // Calculate the forward movement
-        //Vector3 forwardMovement = cameraTransform.forward * joystickInput.y;
-        Vector3 forwardMovement = Vector3.ProjectOnPlane(cameraTransform.forward, Vector3.up) * joystickInput.y;
-        // Calculate the rightward movement
-        //Vector3 rightwardMovement = cameraTransform.right * joystickInput.x;
-        Vector3 rightwardMovement = Vector3.ProjectOnPlane(cameraTransform.right, Vector3.up) * joystickInput.x;
-
-        // Combine the movement vectors and normalize to avoid faster diagonal movement
-        Vector3 movement = (forwardMovement + rightwardMovement).normalized * speed * Time.deltaTime;
-
-        // Apply the movement
-        transform.Translate(movement, Space.World);
+        Vector2 joystickInput = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+        Vector3 move = new Vector3(joystickInput.x, 0, joystickInput.y);
+        move = cameraTransform.TransformDirection(move);
+        move.y = 0;
+        transform.Translate(move * speed * Time.deltaTime, Space.World);
     }
 
 
