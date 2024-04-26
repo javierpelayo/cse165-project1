@@ -9,7 +9,7 @@ public class UserMovement : MonoBehaviour
 
     // Start is called before the first frame update
 
-    public float speed = 1.0f;
+    public float speed = 2.0f;
     public Transform cameraTransform;
 
 
