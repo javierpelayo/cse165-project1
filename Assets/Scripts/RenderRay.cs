@@ -8,7 +8,7 @@ public class RenderRay : MonoBehaviour
     public float rayLength = 10.0f;
 
     public LayerMask interactableLayers;
-    public Camera mainCamera = Camera.main;
+    public Camera mainCamera;
     public GameObject mainCanvas;
 
     public static Vector3 rayStartPosition;
@@ -20,6 +20,7 @@ public class RenderRay : MonoBehaviour
     void Start()
     {
         lr = GetComponent<LineRenderer>();
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -43,4 +44,13 @@ public class RenderRay : MonoBehaviour
         rayEndPosition = endPosition;
         rayStartPosition = transform.position;
     }
+
+    // public GameObject GetHitObject()
+    // {
+    //     if (rayHitsCollider)
+    //     {
+    //         return isectInfo.collider.gameObject;
+    //     }
+    //     return null;
+    // }
 }
