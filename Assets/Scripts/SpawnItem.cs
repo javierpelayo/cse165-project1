@@ -25,6 +25,7 @@ public class SpawnItem : MonoBehaviour
             GameObject inst = Instantiate(chosenObject, spawnPoint, Quaternion.identity);
             Rigidbody rb = inst.AddComponent<Rigidbody>();
             BoxCollider bc = inst.AddComponent<BoxCollider>();
+            inst.tag = "Grabbable";
 
             bc.isTrigger = false;
             bc.size = new Vector3(inst.GetComponent<Renderer>().bounds.size.x, inst.GetComponent<Renderer>().bounds.size.y, inst.GetComponent<Renderer>().bounds.size.z);

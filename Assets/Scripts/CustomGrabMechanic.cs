@@ -5,32 +5,63 @@ using UnityEngine;
 public class CustomGrabMechanic : MonoBehaviour
 {
     private GameObject heldObject = null;
-    private CustomHandCollider handCollider;
+    private List<GameObject> potentialGrabbableObjects = new List<GameObject>();
 
-    void Start()
+    void OnTriggerEnter(Collider other)
     {
-        handCollider = GetComponent<CustomHandCollider>();
+        if (other.CompareTag("Grabbable"))
+        {
+            potentialGrabbableObjects.Add(other.gameObject);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Grabbable"))
+        {
+            potentialGrabbableObjects.Remove(other.gameObject);
+        }
     }
 
     void Update()
     {
         // Check for grab input
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.RTouch))
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
         {
-            if (handCollider.currentGrabbableObject != null)
+            if (potentialGrabbableObjects.Count > 0)
             {
-                GrabObject(handCollider.currentGrabbableObject);
+                GameObject closestObject = FindClosestGrabbableObject();
+                if (closestObject != null)
+                {
+                    GrabObject(closestObject);
+                }
             }
         }
-        
+
         // Check for release input
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch) || OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.RTouch))
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger) && heldObject != null)
         {
-            if (heldObject != null)
+            ReleaseObject();
+        }
+    }
+
+    GameObject FindClosestGrabbableObject()
+    {
+        GameObject closestObject = null;
+        float closestDistance = Mathf.Infinity;
+        Vector3 position = transform.position;
+
+        foreach (GameObject obj in potentialGrabbableObjects)
+        {
+            Vector3 directionToTarget = obj.transform.position - position;
+            float dSqrToTarget = directionToTarget.sqrMagnitude;
+            if (dSqrToTarget < closestDistance)
             {
-                ReleaseObject();
+                closestDistance = dSqrToTarget;
+                closestObject = obj;
             }
         }
+        return closestObject;
     }
 
     void GrabObject(GameObject obj)
