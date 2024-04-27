@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using static RenderRay;
 
@@ -9,6 +10,7 @@ public class SelectItem : MonoBehaviour
     public Color highlightColor = Color.yellow;
     public Color hdrEmissionColor = new Color(100.0f, 100.0f, 100.0f, 1.0f);
     public Color originalColor = Color.white;
+    public MenuItems menuItems;
 
     public static GameObject selectedItem;
     // Start is called before the first frame update
@@ -23,9 +25,17 @@ public class SelectItem : MonoBehaviour
         bool rightGripDown = OVRInput.Get(OVRInput.Button.SecondaryHandTrigger);
 
         if (RenderRay.rayHitsCollider && rightGripDown) {
-            selectedItem = RenderRay.isectInfo.collider.gameObject;
-            Debug.Log("Item Selected!");
-            HighlightItem();
+            GameObject objectCollided = RenderRay.isectInfo.collider.gameObject;
+
+            //bool instanceOfPrefab1 = PrefabUtility.GetPrefabInstanceHandle(objectCollided) == PrefabUtility.GetPrefabInstanceHandle(menuItems.itemPrefab1);
+            //bool instanceOfPrefab2 = PrefabUtility.GetPrefabInstanceHandle(objectCollided) == PrefabUtility.GetPrefabInstanceHandle(menuItems.itemPrefab2);
+
+            if (objectCollided.Equals(GameObject.Find("Equipment_36(Clone)")) || objectCollided.Equals(GameObject.Find("Bin_1(Clone)")))
+            {
+                Debug.Log("Item Selected!");
+                selectedItem = RenderRay.isectInfo.collider.gameObject;
+                HighlightItem();
+            }
         }        
     }
 

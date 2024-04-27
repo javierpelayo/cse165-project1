@@ -529,7 +529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4473535996617709080, guid: d0abdd77712724b409bdd185b622ac7c, type: 3}
       propertyPath: m_Name
-      value: OVRRuntimeControllerPrefab
+      value: RightController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -901,6 +901,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 900461615}
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 900461622}
   m_SourcePrefab: {fileID: 100100000, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
 --- !u!1 &565695712 stripped
 GameObject:
@@ -1149,9 +1152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d6e6a8238e3b348908a22ff9609a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightColor: {r: 0, g: 0, b: 0, a: 0}
-  hdrEmissionColor: {r: 100, g: 100, b: 100, a: 1}
-  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  highlightColor: {r: 1, g: 0, b: 0, a: 0}
+  hdrEmissionColor: {r: 1, g: 0, b: 0, a: 1}
+  originalColor: {r: 1, g: 0, b: 0, a: 0}
+  menuItems: {fileID: 900461617}
 --- !u!114 &900461617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1164,8 +1168,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b810e08905ef3b94990c397132fd565f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab1: {fileID: -927199367670048503, guid: e647c15398a10fb4eb947f52be5bb123, type: 3}
-  itemPrefab2: {fileID: -927199367670048503, guid: 3d3eedb714414844bbf5faff4575597a, type: 3}
+  itemPrefab1: {fileID: -927199367670048503, guid: 5976876db653ecf4f9acb6fa04b2433f, type: 3}
+  itemPrefab2: {fileID: -927199367670048503, guid: aaf79288c211f18428fabbcd424323e2, type: 3}
+--- !u!114 &900461622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900461602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dac15cc8a12b204493be0ef48e62c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 468353605}
+  distanceToItem: 4
+  collider: {fileID: 0}
 --- !u!1 &975764480 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1305791518394246069, guid: f11df41e8322543488f992f498ffe4a2, type: 3}
