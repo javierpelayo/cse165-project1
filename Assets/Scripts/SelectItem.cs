@@ -8,9 +8,8 @@ using static ScaleItem;
 public class SelectItem : MonoBehaviour
 {
 
-    public Color highlightColor = Color.yellow;
-    public Color hdrEmissionColor = new Color(100.0f, 100.0f, 100.0f, 1.0f);
-    public Color originalColor = Color.white;
+    public Material highlightMaterial;
+    public static Material previousMaterial;
     public MenuItems menuItems;
 
     public static GameObject selectedItem;
@@ -44,17 +43,27 @@ public class SelectItem : MonoBehaviour
         }        
 
     }
+    public static void UnhighlightItem()
+    {
+        if (selectedItem != null)
+        {
+            Renderer r = selectedItem.GetComponent<Renderer>();
+            if (r != null && previousMaterial != null)
+            {
+                r.material = previousMaterial;
+            }
+        }
+
+    }
+
 
     void HighlightItem()
     {
         Renderer r = selectedItem.GetComponent<Renderer>();
         if (r != null)
         {
-            Debug.Log("Got Renderer!!!");
-            Material m = r.material;
-            m.EnableKeyword("_EMISSION");
-            m.SetColor("_EmissiveColor", hdrEmissionColor);
-            m.SetFloat("_EmissiveIntensity", 1.0f);
+            previousMaterial = r.material;
+            r.material = highlightMaterial;
         }
     }
 }

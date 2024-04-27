@@ -1163,9 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d6e6a8238e3b348908a22ff9609a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightColor: {r: 1, g: 0, b: 0, a: 0}
-  hdrEmissionColor: {r: 1, g: 0, b: 0, a: 1}
-  originalColor: {r: 1, g: 0, b: 0, a: 0}
+  highlightMaterial: {fileID: 2100000, guid: 5ecd5597cf22daa428964bcf09ed2674, type: 2}
   menuItems: {fileID: 900461617}
   scaleItem: {fileID: 900461628}
 --- !u!114 &900461617
@@ -1208,6 +1206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d91551fbc4aeb4346a0bf524d4c9430a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveItem: {fileID: 900461622}
 --- !u!114 &900461628
 MonoBehaviour:
   m_ObjectHideFlags: 0
