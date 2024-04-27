@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using static RenderRay;
+using static ScaleItem;
 
 public class SelectItem : MonoBehaviour
 {
@@ -13,10 +14,11 @@ public class SelectItem : MonoBehaviour
     public MenuItems menuItems;
 
     public static GameObject selectedItem;
+    public ScaleItem scaleItem;
     // Start is called before the first frame update
     void Start()
     {
-        
+        selectedItem = null;
     }
 
     // Update is called once per frame
@@ -30,13 +32,17 @@ public class SelectItem : MonoBehaviour
             //bool instanceOfPrefab1 = PrefabUtility.GetPrefabInstanceHandle(objectCollided) == PrefabUtility.GetPrefabInstanceHandle(menuItems.itemPrefab1);
             //bool instanceOfPrefab2 = PrefabUtility.GetPrefabInstanceHandle(objectCollided) == PrefabUtility.GetPrefabInstanceHandle(menuItems.itemPrefab2);
 
-            if (objectCollided.Equals(GameObject.Find("Equipment_36(Clone)")) || objectCollided.Equals(GameObject.Find("Bin_1(Clone)")))
+            if (objectCollided.tag == "Grabbable" && selectedItem == null)
             {
                 Debug.Log("Item Selected!");
                 selectedItem = RenderRay.isectInfo.collider.gameObject;
+                ScaleItem.startPosLeft = scaleItem.leftController.transform.position;
+                ScaleItem.startPosRight = scaleItem.rightController.transform.position;
+                ScaleItem.startDistanceBetween = (startPosLeft - startPosRight).magnitude;
                 HighlightItem();
             }
         }        
+
     }
 
     void HighlightItem()

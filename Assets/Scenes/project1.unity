@@ -252,6 +252,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8842036701466437097, guid: 515f34272ffea474d859dda040d1e270, type: 3}
+--- !u!1 &113881167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4473535996617709080, guid: d0abdd77712724b409bdd185b622ac7c, type: 3}
+  m_PrefabInstance: {fileID: 815912389}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &155962662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4593680705043960, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
@@ -904,6 +909,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 900461622}
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 900461627}
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 900461628}
   m_SourcePrefab: {fileID: 100100000, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
 --- !u!1 &565695712 stripped
 GameObject:
@@ -1059,7 +1070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4473535996617709080, guid: d0abdd77712724b409bdd185b622ac7c, type: 3}
       propertyPath: m_Name
-      value: OVRRuntimeControllerPrefab
+      value: LeftController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1156,6 +1167,7 @@ MonoBehaviour:
   hdrEmissionColor: {r: 1, g: 0, b: 0, a: 1}
   originalColor: {r: 1, g: 0, b: 0, a: 0}
   menuItems: {fileID: 900461617}
+  scaleItem: {fileID: 900461628}
 --- !u!114 &900461617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1184,7 +1196,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 468353605}
   distanceToItem: 4
-  collider: {fileID: 0}
+--- !u!114 &900461627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900461602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91551fbc4aeb4346a0bf524d4c9430a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &900461628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900461602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6361f3000cfdf04ebeb7078cf422777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftController: {fileID: 113881167}
+  rightController: {fileID: 1817461485}
 --- !u!1 &975764480 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1305791518394246069, guid: f11df41e8322543488f992f498ffe4a2, type: 3}
@@ -1914,6 +1951,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 459718, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
   m_PrefabInstance: {fileID: 546058570}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1817461485 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4473535996617709080, guid: d0abdd77712724b409bdd185b622ac7c, type: 3}
+  m_PrefabInstance: {fileID: 342764124}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1877789890 stripped
 Transform:

@@ -8,7 +8,8 @@ public class MoveItem : MonoBehaviour
 
     public GameObject controller;
     public float distanceToItem = 3.0f;
-    public Collider collider;
+    public static Collider collider;
+    public static Rigidbody rigidbody;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,14 +24,22 @@ public class MoveItem : MonoBehaviour
         if (RenderRay.rayHitsCollider && rightGripDown && SelectItem.selectedItem != null)
         {
             Collider c = SelectItem.selectedItem.GetComponent<Collider>();
+            Rigidbody rb = SelectItem.selectedItem.GetComponent<Rigidbody>();
+            rigidbody = rb;
             collider = c;
             collider.enabled = false;
+            rigidbody.useGravity = false;
+            rigidbody.mass = 0.0f;
+            rigidbody.isKinematic = true;
             //distanceToItem = RenderRay.isectInfo.distance;
         }
 
-        if(!rightGripDown)
+        if(!rightGripDown && collider != null)
         {
             collider.enabled = true;
+            rigidbody.useGravity = true;
+            rigidbody.mass = 1.0f;
+            rigidbody.isKinematic = false;
             SelectItem.selectedItem = null;
         }
 
