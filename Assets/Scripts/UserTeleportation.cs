@@ -4,40 +4,38 @@ using UnityEngine;
 
 public class UserTeleportation : MonoBehaviour
 {
+    public Transform cameraRig;         // Reference to the VR Camera Rig
+    public Transform cameraEye;         // Reference to the VR Camera (typically the center eye)
+    public LineRenderer teleportLine;   // Line renderer to show the teleportation path
+    public LayerMask teleportMask;      // LayerMask to specify which layers are teleportable
+    public float maxTeleportDistance = 10f;  // Maximum teleport distance
 
-    public LayerMask teleportationAreasMask; // Set this mask to the layers that are teleportable
-    public Transform rightHandTransform; // Assign the transform of the right hand controller
-    public Transform cameraRig; // Assign your VR Camera Rig's Transform here
+    private bool isTeleporting = false;
+    private Vector3 hitPoint;  // Destination point of teleport
 
-
-    // Update is called once per frame
     void Update()
     {
-        //if (Input.GetButtonDown("Jump")) 
-        if (OVRInput.Get(OVRInput.RawButton.RIndexTrigger))
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))  // Start teleport mode (change button as needed)
         {
-            RaycastForTeleportationArea();
+            isTeleporting = true;
+            teleportLine.enabled = true;
         }
-    }
 
-    void RaycastForTeleportationArea()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(rightHandTransform.position, rightHandTransform.forward, out hit, Mathf.Infinity, teleportationAreasMask))
+        if (isTeleporting)
         {
-            // Perform the teleportation if a valid teleportable area is hit
-            PerformTeleportation(hit.point);
+            Ray ray = new Ray(cameraEye.position, cameraEye.forward);
+            if (Physics.Raycast(ray, out RaycastHit hit, maxTeleportDistance, teleportMask))
+            {
+                hitPoint = hit.point;
+                teleportLine.SetPositions(new Vector3[] { cameraEye.position, hitPoint });
+            }
         }
-    }
 
-    void PerformTeleportation(Vector3 targetPoint)
-    {
-        // Adjust the y position of the targetPoint to the current y position of the cameraRig
-        // to maintain the current height after teleporting.
-        targetPoint.y = cameraRig.position.y;
-
-        // Teleport the camera rig to the target position.
-        cameraRig.position = targetPoint;
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch))  // Perform teleport (change button as needed)
+        {
+            isTeleporting = false;
+            teleportLine.enabled = false;
+            cameraRig.position = new Vector3(hitPoint.x, cameraRig.position.y, hitPoint.z);  // Teleport the camera rig but maintain the original height
+        }
     }
 }
-
